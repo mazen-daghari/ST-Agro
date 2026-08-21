@@ -1,277 +1,173 @@
-# ST-Agro
-This project is an STM32-based wireless data acquisition system with one Master/Gateway Node and multiple Sender Nodes. Sender Nodes collect and transmit data to the Gateway, which connects to a computer via USB. After each successful transmission, Sender Nodes enter 10-minute deep sleep to reduce power consumption.
-# STM32 Master & Sender Node System
+# ST-Agro: Wireless Data Acquisition and Control System
 
-## Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-STM32-blue.svg)](https://www.st.com/)
+[![Dashboard](https://img.shields.io/badge/GUI-St%20Agro%20Control%20Dashboard-green.svg)](https://youtu.be/QQxuJRQUxHk)
 
-This project implements a wireless sensor system based on **STM32 nodes**, consisting of a **Master (Gateway) Node** and multiple **Sender Nodes**.
+A low-power, STM32-based wireless data acquisition and control architecture designed for smart agriculture and industrial environmental monitoring. The system consists of a Master/Gateway Node connected to a PC via USB and multiple Sender (Sensor) Nodes deployed in the field. 
 
-The Master Node is connected to a computer through USB and acts as the gateway for receiving data from the Sender Nodes. Each Sender Node periodically collects and transmits data, then enters **deep sleep mode for 10 minutes** after a successful transmission to reduce power consumption.
+System capabilities include integrated SWD firmware deployment, live sensor telemetry (temperature, humidity, multi-gas detection), AI-driven threat assessment (fire/water hazard detection), GPS node mapping, real-time analytics charts, and remote actuator relay matrix control with emergency stop (E-STOP) functionality.
+
+---
+
+## Demonstration Video
+
+[![ST-Agro Dashboard Demo](https://img.youtube.com/vi/QQxuJRQUxHk/maxresdefault.jpg)](https://youtu.be/QQxuJRQUxHk)
+
+*Click the thumbnail above to view the full video demonstration on YouTube.*
 
 ---
 
 ## System Architecture
 
 ```text
-                ┌─────────────────────┐
-                │      Computer       │
-                │   USB / COM Port    │
-                └──────────┬──────────┘
-                           │
-                           │ USB
-                           ▼
-                ┌─────────────────────┐
-                │   Master / Gateway  │
-                │        Node         │
-                └──────────┬──────────┘
-                           │
-              Wireless Communication
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-        ┌──────────┐ ┌──────────┐ ┌──────────┐
-        │ Sender 1 │ │ Sender 2 │ │ Sender N │
-        │   Node   │ │   Node   │ │   Node   │
-        └──────────┘ └──────────┘ └──────────┘
+               ┌──────────────────────────────────────────────────┐
+               │         St Agro Programmer & Dashboard           │
+               │               (PC Graphical UI)                  │
+               └────────────────────────┬─────────────────────────┘
+                                        │
+                                    USB / COM
+                                        │
+                                        ▼
+               ┌──────────────────────────────────────────────────┐
+               │               Master / Gateway Node              │
+               │                   (Slot A)                       │
+               └────────────────────────┬─────────────────────────┘
+                                        │
+                             Wireless Communication
+                                        │
+           ┌────────────────────────────┼────────────────────────────┐
+           ▼                            ▼                            ▼
+┌────────────────────┐       ┌────────────────────┐       ┌────────────────────┐
+│   Sender Node 1    │       │   Sender Node 2    │       │   Sender Node N    │
+│  Sensors & Relays  │       │  Sensors & Relays  │       │  Sensors & Relays  │
+└────────────────────┘       └────────────────────┘       └────────────────────┘
 ```
 
 ---
 
-# 1. Programming / Flashing the Nodes
+## Core System Features
 
-Before testing the system, each node must be programmed using the **STM32-Link programmer**.
+* **Integrated SWD Flasher Interface:** Deploy `Master Node (Slot A)` and `Sender Node (Slot B)` firmware binaries directly from the control desktop GUI without requiring external programming tools.
+* **Low-Power Deep Sleep Cycle:** Sender nodes perform data collection, transmit packets to the Gateway, and immediately enter a 10-minute ultra-low-power deep sleep state to optimize battery consumption.
+* **Multi-Sensor Telemetry Acquisition:**
+  * Environmental Data: Temperature and Relative Humidity
+  * Gas Array Monitoring: MQ2, MQ7, and MQ135 sensor payload values
+* **Threat Intelligence Processing:** Real-time threat calculation providing automated risk scores for Fire Hazard and Water Quality alerts.
+* **Actuator Control Matrix:** Remote execution and control of a 4-channel relay array (`R1: Irrigation`, `R2: Fire Pump`, `R3: Ventilation`, `R4: Alarm Buzzer`).
+* **Emergency Stop (E-STOP):** Single-click software override that initiates an immediate hardware reset and emergency shutdown state across active nodes.
+* **Node Geolocation Tracking:** Integrated OpenStreetMap spatial tracking displaying live GPS locations of active field nodes.
+* **Database Aggregated Analytics:** Comprehensive historical and per-node real-time graphical metrics.
 
-## 1.1 Flash the Master (Gateway) Node
+---
 
-1. Connect the **STM32-Link programmer** to the **Master Node PCB**.
-2. Press and hold the **RESET** button for approximately **3 seconds**.
-3. Select the **Master/Gateway Node** option in the programming software.
-4. Click **Flash Device**.
-5. Wait until the flashing process is completed successfully.
-6. Disconnect the programmer after programming is complete.
+## Getting Started
 
-## 1.2 Flash the Sender Node
+### Hardware Requirements
 
-1. Connect the **STM32-Link programmer** to the **Sender Node PCB**.
-2. Select the **Sender Node** option.
-3. Press and hold the **RESET** button for approximately **3 seconds**.
-4. Click **Flash Device**.
-5. Wait for the flashing process to complete successfully.
-6. Disconnect the programmer.
+1. Master/Gateway Node PCB (STM32-based controller)
+2. Sender Node PCB(s) (STM32-based sensor nodes)
+3. ST-LINK V2 / SWD Debugger
+4. USB Cable (A-to-Micro or Type-C based on hardware design)
+5. Sensor payload array (DHT/SHT series, MQ gas sensors, GPS module)
+6. 4-Channel Relay Control Module
 
-## 1.3 Program Multiple Sender Nodes
+---
 
-If multiple Sender Nodes are used, repeat the same procedure for **each Sender Node**.
+## Setup and Flashing Instructions
+
+### Step 1: Flash the Master (Gateway) Node
+
+1. Connect the ST-LINK programmer via the SWD header to the Master Node PCB.
+2. Launch the **St Agro Programmer & Control Dashboard**.
+3. Navigate to the **Flasher** tab on the left panel.
+4. Under **Target Firmware**, select **Master Node (Slot A)**.
+5. Set the debug interface to **SWD**.
+6. Press and hold the hardware **RESET** button on the Master PCB for approximately 3 seconds, then click **Flash Device**.
+7. Monitor the **System Event Log** until the process completes with the message `=== FLASH SUCCESSFUL ===`.
+
+### Step 2: Flash the Sender Node(s)
+
+1. Connect the ST-LINK programmer to the target Sender Node PCB.
+2. In the **Flasher** tab, select **Sender Node (Slot B)**.
+3. Hold the hardware **RESET** button on the Sender PCB for approximately 3 seconds, then click **Flash Device**.
+4. Disconnect the debugging interface upon completion.
+5. Repeat this sequence for each additional Sender Node within the network topology.
 
 ```text
-Connect Programmer
-       ↓
-Select Node Type
-       ↓
-Press RESET for 3 sec
-       ↓
-Click "Flash Device"
-       ↓
-Wait for completion
-       ↓
-Repeat for next Sender Node
+Connect Programmer ──> Select Firmware Slot ──> Hold RESET (3s) ──> Click "Flash Device" ──> Verify Log Output
 ```
 
 ---
 
-# 2. System Testing
+## System Operation and Communications
 
-After all nodes have been programmed, the system can be tested.
+### Gateway Connection
 
-## 2.1 Connect the Master Node
+1. Connect the programmed Master Node to the host computer using a USB cable.
+2. In the desktop application under **Serial Connection**, click the refresh icon adjacent to the COM port menu.
+3. Select the appropriate Master Node port (e.g., `COM3`) and set the baud rate to **38400**.
+4. Click **Connect**. The status indicator in the upper right corner will confirm connection status (`Connected - COM3`).
 
-1. Connect the **Master (Gateway) Node** to the computer using USB.
-2. Open the system/software interface.
-3. Refresh the **COM Port** list.
-4. Find the COM Port corresponding to the Master Node.
-5. Select the correct COM Port.
-6. Click **Connect**.
-7. The software should display a message confirming that the board has been **successfully connected**.
+### Node Deployment
 
-Example:
+1. Apply power to the Sender Node(s).
+2. The Sender Node automatically collects sensor metrics and transmits telemetry packets to the Gateway Node.
+3. Following each confirmed transmission, the node enters a **10-minute deep sleep cycle** prior to initiating the subsequent measurement cycle.
+
+---
+
+## Application Interface Overview
+
+| Interface Section | Primary Function |
+| :--- | :--- |
+| **Dashboard** | Monitors active node state, hazard alerts (`FIRE_HAZARD`), live telemetry logs, relay matrix switching, and global **E-STOP** triggers. |
+| **Flasher** | In-app firmware deployment interface for Master and Sender binaries via SWD. |
+| **Node Map** | Geographical layout visualizing GPS coordinate data transmitted by deployed nodes. |
+| **Charts & Global** | Graphical breakdown of historical database records and active per-node metric channels. |
+
+---
+
+## Troubleshooting Guide
+
+* **COM Port Not Detected:** Verify FTDI/UART device driver installation and physical cable connection. Click the refresh control in the Serial Connection settings.
+* **Firmware Flashing Failure:** Inspect SWD pin connections (`SWCLK`, `SWDIO`, `GND`, `3V3`). Ensure the physical **RESET** button is held for 3 seconds prior to clicking **Flash Device**.
+* **Missing Telemetry Data:** Confirm the Sender node is powered and not currently operating within its 10-minute deep sleep phase. Press the physical RESET button on the Sender node to initiate an immediate transmission.
+
+---
+
+## Copyright and License
+
+This software and hardware implementation is released under the **MIT License**.
 
 ```text
-COM Port: COMx
-Status: Connected Successfully
+MIT License
+
+Copyright (c) 2026 Mazen Daghari
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
----
+### Citation Notice
 
-# 3. Start the Sender Node
+For academic, scientific, or technical research projects utilizing this design, please cite the developer as follows:
 
-Once the Master Node is connected:
-
-1. Power on the **Sender Node**.
-2. The Sender Node will automatically start operating.
-3. It will collect and transmit data to the **Master/Gateway Node**.
-4. The received data can then be monitored through the computer interface.
-
-No additional action is required to start data transmission after powering the Sender Node.
-
----
-
-# 4. Deep Sleep Mode
-
-To reduce power consumption, the Sender Node uses a **10-minute deep sleep cycle**.
-
-After a successful data transmission:
-
-```text
-Data Acquisition
-       ↓
-Data Transmission
-       ↓
-Transmission Successful
-       ↓
-10-Minute Deep Sleep
-       ↓
-Wake Up
-       ↓
-Data Acquisition
-       ↓
-Data Transmission
-       ↓
-       ...
-```
-
-### Important
-
-The **10-minute deep sleep period starts after a successful data transmission**.
-
-During deep sleep, the Sender Node significantly reduces its power consumption. After 10 minutes, it automatically wakes up and resumes the data transmission cycle.
-
----
-
-# 5. Complete Setup Procedure
-
-For a complete system setup, follow these steps in order:
-
-### Step 1 — Flash the Master Node
-
-* Connect the STM32-Link programmer.
-* Connect it to the Master Node PCB.
-* Press **RESET** for approximately 3 seconds.
-* Select the **Master/Gateway Node** option.
-* Click **Flash Device**.
-* Wait for the programming process to finish.
-
-### Step 2 — Flash the Sender Nodes
-
-For every Sender Node:
-
-* Connect the STM32-Link programmer.
-* Select **Sender Node**.
-* Press **RESET** for approximately 3 seconds.
-* Click **Flash Device**.
-* Wait for the flashing process to finish.
-* Repeat for all remaining Sender Nodes.
-
-### Step 3 — Connect the Gateway
-
-* Connect the Master Node to the computer via USB.
-* Refresh the COM Port list.
-* Select the correct COM Port.
-* Click **Connect**.
-* Verify that the software reports a successful connection.
-
-### Step 4 — Power the Sender Nodes
-
-* Power on the Sender Node(s).
-* The nodes will automatically begin transmitting data.
-* Monitor the received data through the Master/Gateway interface.
-
-### Step 5 — Verify the Sleep Cycle
-
-After a successful transmission:
-
-* The Sender Node enters **deep sleep for 10 minutes**.
-* After 10 minutes, it wakes up.
-* The node resumes data collection and transmission automatically.
-
----
-
-# 6. Troubleshooting
-
-### Master Node is not detected
-
-Check the following:
-
-* USB connection.
-* STM32-Link connection.
-* Correct COM Port.
-* Master Node power supply.
-* Try pressing and holding **RESET** for 3 seconds.
-
-### Sender Node does not transmit data
-
-Check:
-
-* Sender Node power supply.
-* Correct firmware has been flashed.
-* Sender Node has been programmed using the **Sender Node** option.
-* Wireless communication between the Sender and Master Nodes.
-* Wait for the node to complete its current sleep cycle.
-
-### No data appears on the computer
-
-Verify that:
-
-1. The Master Node is connected to the correct COM Port.
-2. The software reports **Connected Successfully**.
-3. The Sender Node is powered on.
-4. The Sender Node is not currently in the 10-minute deep sleep period.
-5. The Sender Node has successfully completed its firmware flashing process.
-
----
-
-# 7. Quick Start
-
-For experienced users, the complete procedure is:
-
-```text
-1. Flash Master/Gateway Node
-        ↓
-2. Flash every Sender Node
-        ↓
-3. Connect Master Node via USB
-        ↓
-4. Refresh COM Ports
-        ↓
-5. Select Master COM Port
-        ↓
-6. Click Connect
-        ↓
-7. Power Sender Node(s)
-        ↓
-8. Receive Data
-        ↓
-9. Sender sleeps for 10 minutes
-        ↓
-10. Sender wakes up and transmits again
-```
-
----
-
-## Requirements
-
-* STM32 Master/Gateway PCB
-* STM32 Sender Node PCB(s)
-* STM32-Link programmer
-* USB cable
-* Computer
-* Appropriate power supply for the Sender Node(s)
-* Programming and monitoring software
-
----
-
-## Notes
-
-* Make sure the correct node type is selected before flashing.
-* The **Master/Gateway firmware** must be flashed to the Master Node.
-* The **Sender firmware** must be flashed separately to each Sender Node.
-* The 10-minute deep sleep cycle is automatically activated after each successful data transmission.
-* When using multiple Sender Nodes, repeat the flashing procedure for every node.
+* **Author:** Electronic & Communication System Engineer **Mazen Daghari**
+* **Project:** ST-Agro Wireless Acquisition System & Control Dashboard
+* **Demonstration Reference:** https://youtu.be/QQxuJRQUxHk
