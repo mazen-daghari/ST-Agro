@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-STM32-blue.svg)](https://www.st.com/)
 [![Dashboard](https://img.shields.io/badge/GUI-St%20Agro%20Control%20Dashboard-green.svg)](https://youtu.be/QQxuJRQUxHk)
+[![Promo](https://img.shields.io/badge/Video-Promotional%20Video-red.svg)](https://youtu.be/v6s37rHDwMU)
 
 A low-power, STM32-based wireless data acquisition and control architecture designed for smart agriculture and industrial environmental monitoring. The system consists of a Master/Gateway Node connected to a PC via USB and multiple Sender (Sensor) Nodes deployed in the field. 
 
@@ -10,11 +11,13 @@ System capabilities include integrated SWD firmware deployment, live sensor tele
 
 ---
 
-## Demonstration Video
+## Demonstration & Promotional Videos
 
-[![ST-Agro Dashboard Demo](https://img.youtube.com/vi/QQxuJRQUxHk/maxresdefault.jpg)](https://youtu.be/QQxuJRQUxHk)
+* **Promotional Video:** [![ST-Agro Promotional Video](https://img.youtube.com/vi/v6s37rHDwMU/maxresdefault.jpg)](https://youtu.be/v6s37rHDwMU)
 
-*Click the thumbnail above to view the full video demonstration on YouTube.*
+* **Dashboard Demonstration:** [![ST-Agro Dashboard Demo](https://img.youtube.com/vi/QQxuJRQUxHk/maxresdefault.jpg)](https://youtu.be/QQxuJRQUxHk)
+
+*Click the thumbnails above to view the videos on YouTube.*
 
 ---
 
