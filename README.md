@@ -20,29 +20,7 @@ System capabilities include integrated SWD firmware deployment, live sensor tele
 
 ## System Architecture
 
-```text
-               ┌──────────────────────────────────────────────────┐
-               │         St Agro Programmer & Dashboard           │
-               │               (PC Graphical UI)                  │
-               └────────────────────────┬─────────────────────────┘
-                                        │
-                                    USB / COM
-                                        │
-                                        ▼
-               ┌──────────────────────────────────────────────────┐
-               │               Master / Gateway Node              │
-               │                   (Slot A)                       │
-               └────────────────────────┬─────────────────────────┘
-                                        │
-                             Wireless Communication
-                                        │
-           ┌────────────────────────────┼────────────────────────────┐
-           ▼                            ▼                            ▼
-┌────────────────────┐       ┌────────────────────┐       ┌────────────────────┐
-│   Sender Node 1    │       │   Sender Node 2    │       │   Sender Node N    │
-│  Sensors & Relays  │       │  Sensors & Relays  │       │  Sensors & Relays  │
-└────────────────────┘       └────────────────────┘       └────────────────────┘
-```
+![System Architecture](https://raw.githubusercontent.com/mazen-daghari/ST-Agro/644b52f263133617d76fb6110cbb068184cfff48/Architecture-svg.svg)
 
 ---
 
