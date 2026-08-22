@@ -164,7 +164,20 @@ Connect Programmer ──> Select Firmware Slot ──> Hold RESET (3s) ──> 
 * **SQLite Telemetry Logging & Analytics:** Automatic local database persistence (`node_telemetry.db`) with real-time per-node streaming charts and aggregated global network averages.
 * **Hardware Interfacing Guide:** Built-in pinout reference tables for SWD (PA13/PA14), 20-pin JTAG, and ST-LINK/V2 dongles.
 ---
+## Getting Started
 
+### Hardware Requirements
+
+1. Master/Gateway Node PCB (STM32-based controller)
+2. Sender Node PCB(s) (STM32-based sensor nodes)
+3. ST-LINK V2 / SWD Debugger
+4. USB Cable (A-to-Micro or Type-C based on hardware design)
+5. Sensor payload array (DHT/SHT series, MQ gas sensors, GPS module)
+6. 4-Channel Relay Control Module
+
+### Software Requirements
+* Install and run St Agro Programmer V2.32
+---
 ## Copyright and License
 
 This software and hardware implementation is released under the **MIT License**.
