@@ -213,3 +213,8 @@ For academic, scientific, or technical research projects utilizing this design, 
 * **Author:** Electronic & Communication System Engineer **Mazen Daghari**
 * **Project:** ST-Agro Wireless Acquisition System & Control Dashboard
 * **Demonstration Reference:** https://youtu.be/QQxuJRQUxHk
+ ### Paper & Citation
+If you find this work useful in your research, please cite our paper:
+
+> M. Daghari, "ST-Agro: Low-Power Wireless Data Acquisition System," *IEEE...*
+> **Preprint / Paper:** [Link]
