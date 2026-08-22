@@ -14,6 +14,8 @@ System capabilities include integrated SWD firmware deployment, live sensor tele
 ## Demonstration & Promotional Videos
 
 * **Promotional Video:** [![ST-Agro Promotional Video](https://img.youtube.com/vi/v6s37rHDwMU/maxresdefault.jpg)](https://youtu.be/v6s37rHDwMU)
+  
+---
 
 * **Dashboard Demonstration:** [![ST-Agro Dashboard Demo](https://img.youtube.com/vi/QQxuJRQUxHk/maxresdefault.jpg)](https://youtu.be/QQxuJRQUxHk)
 
@@ -30,29 +32,29 @@ System capabilities include integrated SWD firmware deployment, live sensor tele
 
 ### Application Software Interface
 
-![Dashboard View](path/to/dashboard-screenshot.png)
+![Dashboard View](https://github.com/mazen-daghari/ST-Agro/blob/a745ba1f822ba48972e0608266926620c045ff7f/ST-AGRO%20DASGBOARD.png)
 *Figure 1: ST-Agro Control Dashboard showcasing live telemetry metrics, hazard risk calculations, real-time node statuses, relay controls, and global emergency stop features.*
 
-![Flasher View](path/to/flasher-screenshot.png)
+![Flasher View](https://github.com/mazen-daghari/ST-Agro/blob/a745ba1f822ba48972e0608266926620c045ff7f/ST-AGRO%20FLASHER.png)
 *Figure 2: SWD Flasher Interface used to flash Master (Slot A) and Sender (Slot B) firmware directly from the desktop application.*
 
-![Node Map View](path/to/nodemap-screenshot.png)
+![Node Map View](https://github.com/mazen-daghari/ST-Agro/blob/a745ba1f822ba48972e0608266926620c045ff7f/ST-AGRO%20NODE%20MAP.png)
 *Figure 3: Integrated OpenStreetMap view displaying active field node locations based on live transmitted GPS spatial data.*
 
-![Analytics Charts View](path/to/charts-screenshot.png)
+![Analytics Charts View](https://github.com/mazen-daghari/ST-Agro/blob/a745ba1f822ba48972e0608266926620c045ff7f/ST-AGRO%20NODE%20CHARTS.png)
 *Figure 4: Historical and real-time database aggregated analytics visualizing sensor trends and telemetry metrics per node.*
 
 ---
 
 ### Hardware PCB Layouts
 
-![Master Node PCB](path/to/master-node-pcb.png)
+![Master Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/774fa99ae3891e5d04ee102ccba33a86722e32f9/ST-AGRO%20Master%20GATEWAY%20node.png)
 *Figure 5: Master/Gateway Node PCB featuring the STM32 microcontroller, USB communication interface, and SWD programming header.*
 
-![Sender Node PCB](path/to/sender-node-pcb.png)
+![Sender Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/774fa99ae3891e5d04ee102ccba33a86722e32f9/ST-AGRO%20Sender%20Node.png)
+
 *Figure 6: Sender (Sensor) Node PCB integrating low-power STM32 architecture, sensor array interfaces, wireless transmitter, and power management circuits.*
 
----
 ---
 
 ## Core System Features
