@@ -30,6 +30,10 @@ System capabilities include integrated SWD firmware deployment, live sensor tele
 
 ## Software & Hardware Visual Overview
 
+The system relies on a unified desktop application built in Python using `customtkinter` for modern UI components, `matplotlib` for real-time analytics, `sqlite3` for local persistent storage, and `tkintermapview` for node mapping. The application acts as a dual-purpose software hub:
+
+1. **Direct SWD Hardware Flashing:** Communicates directly with `STM32_Programmer_CLI.exe` to flash compiled binaries (`.elf`) to Master Node (Slot A) and Sender Nodes (Slot B) at base address `0x08000000` over SWD/JTAG interfaces.
+2. **LoRa Gateway Supervision & Actuator Control:** Connects to the Master Node over Serial UART to parse incoming sensor telemetry, render live per-node metrics, display active GPS node positions, log background telemetry to SQLite (`node_telemetry.db`), and send remote 4-channel relay control commands or Emergency Stop (`E-STOP`) overrides.
 ### Application Software Interface
 
 ![Dashboard View](https://github.com/mazen-daghari/ST-Agro/blob/a745ba1f822ba48972e0608266926620c045ff7f/ST-AGRO%20DASGBOARD.png)
@@ -145,6 +149,20 @@ Connect Programmer ──> Select Firmware Slot ──> Hold RESET (3s) ──> 
 * **Firmware Flashing Failure:** Inspect SWD pin connections (`SWCLK`, `SWDIO`, `GND`, `3V3`). Ensure the physical **RESET** button is held for 3 seconds prior to clicking **Flash Device**.
 * **Missing Telemetry Data:** Confirm the Sender node is powered and not currently operating within its 10-minute deep sleep phase. Press the physical RESET button on the Sender node to initiate an immediate transmission.
 
+---
+## Core System Features
+
+* **Integrated SWD Flasher Interface:** Direct desktop firmware deployment via `STM32CubeProgrammer` CLI supporting SWD/JTAG modes for Master (`Slot A`) and Sender (`Slot B`) binaries targeting flash address `0x08000000`.
+* **Low-Power Deep Sleep Cycle:** Sender nodes collect data, transmit packets to the Gateway, and immediately enter an ultra-low-power 10-minute deep sleep state to conserve battery.
+* **Multi-Sensor Telemetry Acquisition:** 
+  * Environmental Data: Temperature and Relative Humidity
+  * Gas Array & Air Quality Monitoring: MQ2, MQ7, and MQ135 sensor payload values
+* **AI-Driven Threat Intelligence:** Automated risk calculation for Fire Hazard (`AI Fire`) and Water Quality (`AI Water`) detection.
+* **Actuator Control Matrix:** Remotely toggle a 4-channel relay matrix (`R1: Irrigation`, `R2: Fire Pump`, `R3: Ventilation`, `R4: Alarm Beacon`) on individual field nodes over LoRa.
+* **Emergency Stop (E-STOP) Override:** Single-click software override per node that locks controls, turns off active relays, and broadcasts an emergency shutdown command (`NODE:<ID>:EMERGENCY_STOP`).
+* **Node Geolocation Tracking:** Embedded OpenStreetMap module (`tkintermapview`) displaying real-time field positions based on live transmitted GPS coordinates.
+* **SQLite Telemetry Logging & Analytics:** Automatic local database persistence (`node_telemetry.db`) with real-time per-node streaming charts and aggregated global network averages.
+* **Hardware Interfacing Guide:** Built-in pinout reference tables for SWD (PA13/PA14), 20-pin JTAG, and ST-LINK/V2 dongles.
 ---
 
 ## Copyright and License
