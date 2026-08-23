@@ -1,0 +1,30 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [ST-AGRO.PrjPcb]
+   Generated File[ST-AGRO-Master.GTO]
+   Generated File[ST-AGRO-Master.GTP]
+   Generated File[ST-AGRO-Master.GTS]
+   Generated File[ST-AGRO-Master.GTL]
+   Generated File[ST-AGRO-Master.GBL]
+   Generated File[ST-AGRO-Master.GBS]
+   Generated File[ST-AGRO-Master.GBP]
+   Generated File[ST-AGRO-Master.GBO]
+   Generated File[ST-AGRO-Master.GM1]
+   Generated File[ST-AGRO-Master.GM13]
+   Generated File[ST-AGRO-Master.GM15]
+   Generated File[ST-AGRO-Master.GKO]
+   Generated File[ST-AGRO-Master.GPT]
+   Generated File[ST-AGRO-Master.GPB]
+   Generated File[ST-AGRO-Master.GML]
+   Generated File[ST-AGRO-Master.1]
+   Generated File[ST-AGRO-Master.GD1]
+   Generated File[ST-AGRO-Master.GG1]
+   Generated File[ST-AGRO-Master.GM]
+   Generated File[ST-AGRO-Master.EXTREP]
+   Generated File[ST-AGRO-Master.REP]
+
+
+Files Generated   : 21
+Documents Printed : 0
+
+Finished Output Generation At 18:34:58 On 23/08/2026
