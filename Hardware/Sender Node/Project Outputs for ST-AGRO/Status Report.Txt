@@ -1,0 +1,30 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [ST-AGRO.PrjPcb]
+   Generated File[ST-AGRO-Sender.GTO]
+   Generated File[ST-AGRO-Sender.GTP]
+   Generated File[ST-AGRO-Sender.GTS]
+   Generated File[ST-AGRO-Sender.GTL]
+   Generated File[ST-AGRO-Sender.GBL]
+   Generated File[ST-AGRO-Sender.GBS]
+   Generated File[ST-AGRO-Sender.GBP]
+   Generated File[ST-AGRO-Sender.GBO]
+   Generated File[ST-AGRO-Sender.GM1]
+   Generated File[ST-AGRO-Sender.GM13]
+   Generated File[ST-AGRO-Sender.GM15]
+   Generated File[ST-AGRO-Sender.GKO]
+   Generated File[ST-AGRO-Sender.GPT]
+   Generated File[ST-AGRO-Sender.GPB]
+   Generated File[ST-AGRO-Sender.1]
+   Generated File[ST-AGRO-Sender.GML]
+   Generated File[ST-AGRO-Sender.GD1]
+   Generated File[ST-AGRO-Sender.GG1]
+   Generated File[ST-AGRO-Sender.GM]
+   Generated File[ST-AGRO-Sender.EXTREP]
+   Generated File[ST-AGRO-Sender.REP]
+
+
+Files Generated   : 21
+Documents Printed : 0
+
+Finished Output Generation At 20:06:26 On 23/08/2026
