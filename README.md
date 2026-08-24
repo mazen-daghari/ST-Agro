@@ -51,11 +51,13 @@ The system relies on a unified desktop application built in Python using `custom
 ---
 
 ### Hardware PCB Layouts
+![Master Node PCB 3D](https://github.com/mazen-daghari/ST-Agro/blob/ff502bf6758fe578ad17644d4d2286a597a274da/Hardware/Master%20Gateway%20Node/Master%20node-3D.png).
+![Master Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/ff502bf6758fe578ad17644d4d2286a597a274da/Hardware/Master%20Gateway%20Node/Master%20node-Full.png)
 
-![Master Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/774fa99ae3891e5d04ee102ccba33a86722e32f9/ST-AGRO%20Master%20GATEWAY%20node.png)
 *Figure 5: Master/Gateway Node PCB featuring the STM32 microcontroller, USB communication interface, and SWD programming header.*
 
-![Sender Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/774fa99ae3891e5d04ee102ccba33a86722e32f9/ST-AGRO%20Sender%20Node.png)
+![Sender Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/ff502bf6758fe578ad17644d4d2286a597a274da/Hardware/Master%20Gateway%20Node/Master%20node-3D.png)
+![Sender Node PCB](https://github.com/mazen-daghari/ST-Agro/blob/ff502bf6758fe578ad17644d4d2286a597a274da/Hardware/Master%20Gateway%20Node/Master%20node-Full.png)
 
 *Figure 6: Sender (Sensor) Node PCB integrating low-power STM32 architecture, sensor array interfaces, wireless transmitter, and power management circuits.*
 
